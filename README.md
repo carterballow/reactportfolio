@@ -1,3 +1,6 @@
+/* end here... start tommorrow at 28:40 on the video React Portfolio Website Tutorial From Scratch */
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
