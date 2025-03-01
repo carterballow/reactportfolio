@@ -21,25 +21,6 @@ jobs:
     - name: Install dependencies
       run: npm install
 
-    - name: Update git and gh-pages
-      run: |
-        sudo apt-get update
-        sudo apt-get install git -y
-        npm install gh-pages@latest -D
-
-    - name: Configure Git user
-      run: |
-        git config --global user.name "github-actions"
-        git config --global user.email "github-actions@github.com"
-
-    - name: Configure Git for HTTPS with Token and reset remotes
-      run: |
-        git remote remove origin
-        git remote add origin "https://${GH_TOKEN}@github.com/${{ github.repository }}.git"
-        git config --global url."https://${GH_TOKEN}@github.com/".insteadOf "https://github.com/"
-      env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
     - name: Build the app
       run: npm run build
 
