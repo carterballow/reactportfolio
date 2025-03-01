@@ -6,30 +6,23 @@ on:
       - main
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14'
-
     - name: Install dependencies
       run: npm install
 
-    - name: Build the app
+    - name: Build the project
       run: npm run build
 
-    - name: Configure Git user
+    - name: Deploy to GitHub Pages
+      env:
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
       run: |
         git config --global user.name "github-actions"
         git config --global user.email "github-actions@github.com"
-
-    - name: Deploy to GitHub Pages
-      run: npx gh-pages -d build
-      env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        npx gh-pages -d build
